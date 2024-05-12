@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{%include 'navbar.html'%}
+{% block header %}
+{% endblock %}
+{% include 'searchbar.html' %}
+{%block content%}
+<!-- For Admin -->
+{% if (user.is_admin) %}
+<!-- First Table -->
+<div class="overflow-auto">
+        <table class="table table-striped text-center">
+            <thead >
+                <tr >
+                    <th colspan="7" class="align-left bg-warning"> Pending Books</th>
+                </tr>
+                <tr>
+                    <th>Sl. No</th>
+                    <th colspan="2" class="align-middle">Book Name & Section</th>
+                    <th class="align-middle">User_ID</th>
+                    <th colspan="2" class="align-middle">Action</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+                
+                {%for pending in pendings%}
+                
+              
+                    <tr>
+                        
+                    <td>{{loop.index}}.   . <i class="bi bi-link-45deg"></i></td>
+                    <td colspan="2">
+                        <a href="#" class="modal-trigger" data-toggle="modal"  data-target="#requests_modal" 
+   data-book-title="{{ pending.book.book_name }}" 
+   data-book-section="{{ pending.book.sec_name }}" 
+   data-days-requested="{{(current_date - pending.request_date).days+1 }}" 
+   data-username="{{ pending.user_id }}"
+   data-bookid={{pending.book_id}}
+   data-userid={{pending.user_id}}
+
+   style="color: black; text-decoration: none;">
+   {{ pending.book.book_name }}({{pending.book.sec_name}})</a></td>
+                    <td>{{pending.user_id}}</td>
+                    <td><a href="/reject/{{pending.user_id}}/{{pending.book_id}}" class ="btn btn-warning">Reject</a></td>
+                    <td><a href="/approve_book/{{pending.user_id}}/{{pending.book_id}}" class ="btn btn-success">Grant</a></td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+
+      <!-- Second horizontal section -->
+      <div class="overflow-auto">
+
+        <table class="table table-striped text-center">
+            <thead >
+                <tr >
+                    <th colspan="5" class="align-middle  bg-success"> Issued Books </th>
+                </tr>
+                <tr>
+                    <th>Sl. No</th>
+                    <th colspan="2">Book & Section</th>
+                    <th>User_ID</th>
+                    <th>Action</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                
+                {%for i in issued%}
+                
+                    <tr>
+                    <td>{{loop.index}}</td>
+                    <td colspan="2">{{ i.book.book_name }} ({{i.book.sec_name}})</td>
+                    <td>{{i.user_id}}</td>
+                    
+                    <td><a href="/revoke/{{i.user_id}}/{{i.book_id}}" class="btn btn-warning">Revoke</a></td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+            </div>  
+<!-- ===================== Modal ====================-->
+<div class="modal fade" id="requests_modal" tabindex="-1" role="dialog" aria-labelledby="requests_modal_label" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+             
+            <b>Book Request </b>
+              
+          </div>
+          <div class="modal-body">
+              <p>Username:  <b><span id="modal_username"></span></b></p>
+              <p>Days Requested: <b><span id="modal_days_requested"></b></span></p>
+              <p>Book Title: <b><span id="modal_book_title"></span></b></p>
+              <p>Book Section: <b><span id="modal_book_section"></span></b></p>
+              
+          </div>
+          <div class="modal-footer">
+            
+            <a href="#" class="btn btn-warning" id="modal_bookid">View Book</a>
+            <a href="#" class="btn btn-danger" id="modal_reject">Reject</a>
+            <a href="#" class="btn btn-primary" id="modal_grant">Grant</a>
+          </div>
+      </div>
+  </div>
+</div>
+  
+{%else%}
+
+<!-- for Users -->
+
+<div class="row">
+  
+    {% for section in section %}
+    <div class="col-4 border d-flex flex-column">
+        <h3>{{ section.section_name }}</h3>
+        <h5>Created on: {{ section.section_date_created.strftime('%Y-%m-%d ') | trim }}</h5>
+        <h5>Description: {{ section.section_description }}</h5>
+        <div class="mt-auto">
+            <i class="bi bi-book">  : {{section.section_book_count}} books </i> 
+        </div>
+        <div class="mt-auto">
+            <h4 class="bg-light p-2 border">
+                <a href="/book_issued/{{ section.section_id }}" style="color: black; text-decoration: none;" onmouseover="this.style.color='yellow'; this.style.textDecoration='underline';" onmouseout="this.style.color='Green'; this.style.textDecoration='none';"> 
+                    <i class="bi bi-search">Explore Section</i>
+                </a>
+            </h4>
+        </div>
+    </div>
+{% endfor %}      
+  </div>
+{%endif%}  
+
+{%endblock%}
+
+  
+  

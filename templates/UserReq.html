@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{%include 'navbar.html'%}
+{% block header %} {% endblock %}
+{%block content%}
+
+{% include 'searchbar.html' %}
+
+<div class="container-fluid">
+<table class="table table-striped text-center">
+   
+        <tr >
+            <th colspan="4" class="align-middle"><h4>Recommonded Books </h4></th>
+            <td colspan="1" class="align-middle">
+                {% if user.is_premium %}
+                Premium Member, 
+                Unlimited Book Access.
+                {%else%}
+                {{user_limit}} out of 6 Book Requested.
+                {%endif%}
+
+            </td>
+        </tr>
+    
+        <tr>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Section</th>
+            <th colspan="2" class=" align-middle"> Action</th>
+        </tr>
+    
+    <tbody>
+        
+        {%for book in books%}
+        
+            <tr>
+            <td>{{book.book_name }}</td>
+            <td>{{book.book_author}}</td>
+            <td>{{book.sec_name}}</td> 
+            <td><a href="/book_summary/{{book.book_id}}" style="color: rgb(13, 41, 109); text-decoration: none; " onmouseover="this.style.color='green'; this.style.textDecoration='underline';" onmouseout="this.style.color='blue'; this.style.textDecoration='none';"><i class="bi bi-eye"></i>View</a></td>
+            <td>
+                
+                {% if (user_limit>5) and not (user.is_premium) %}
+                Issue_limit_Reached
+                {%else%}
+            <a href="/issue_book/{{book.book_id}}/{{user.id}}" style="color: rgb(13, 41, 12); text-decoration: none; " onmouseover="this.style.color='green'; this.style.textDecoration='underline';" onmouseout="this.style.color='blue'; this.style.textDecoration='none';"><i class="bi bi-envelope-fill"></i>Request</a>
+            </td>
+            {% endif %}
+            
+        </tr>
+        
+        {%endfor%}
+        </tbody>
+    </table>
+
+</div>       
+  {%endblock%}
+

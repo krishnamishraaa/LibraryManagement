@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block header %}
+<h3>Admin login </h3>
+{% endblock header %}
+{% block title %}
+    Admin Login Page
+{% endblock%}
+{% block content %}
+
+<div class="container-fluid p-3 align-middle">
+<form action="login" method="POST" class="form-control align-middle">
+    <label class="form-label" id="username"> Username (Readonly)
+    <input class="form-control" type="text" id="username" name="username" value="admin" readonly />
+</label>
+    <label class="form-label" id="password"> Enter Password
+    <input class="form-control" type="password" id="password" name="password" required/>
+</label>
+    <button type="submit" class="btn btn-success"> Log In </button>
+</form>
+</div>
+    
+{% endblock  %}
+<style>
+    #form{
+        width: 25%;
+
+    }
+</style>

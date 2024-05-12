@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{%include 'navbar.html'%}
+{% block header %} {% endblock %}
+{%block content%}
+   
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th colspan="4" class="text-center"> Books Available to Download</th>
+        </tr>
+        <tr>
+          <th>Book Name</th>
+          <th>Author </th>
+          <th>Section</th>
+          <th>Download Link</th>
+        </tr>
+        <tr> 
+          <td> {{ book.book_name }} </td>
+          <td> {{book.book_author}} </td>
+          <td> {{book.book_sec}} </td>
+          <td> <a href= {{book.book_content}} download="Library.pdf" >Download</a> </td>
+        </tr>
+      </thead>
+    </table>
+
+  {%endblock%}

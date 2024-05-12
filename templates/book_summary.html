@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block Title %} Book Preview ({{book.book_name}})
+{% endblock  %}
+{% block header %} <h1>Summary of {{book.book_name}} </h1> {% endblock %}
+{%block content%}
+<a href="/home" class=" btn btn-primary">Go Back</a>
+
+<p>This Book is Written by <b>{{book.book_author}}</b> an Expert in his field, well known for his hands on experince in domain having 30 + years of experience
+</p>
+
+<img src = "\static\book_summary.png" width="300" height="300" >
+
+<p>
+  In This book {{book.book_author}} is talking about {{book.book_sec}} its current 
+  challanges & Opartunities. He has collected varoious insights from Industry & 
+  beautifully put them here & illustrated in this manner that reader feel like they 
+  are already in that atmosphere experiencing alongwith author. </p>
+  <p>
+  We also hope this book gives you a good insight in {{book.book_sec}} & you are benefited from experience of {{book.book_author}}
+</p>
+Request this book through your page/ <a>Here </a>
+  <em>if you want a printable copy of this book, you can buy it
+    <strong><a href="/premium/{{book.book_id}}">here</a></strong> for $10. 
+    (Unlimited books download available for premium Members. 
+    <a href="/edit_profile">Upgrade to Premium</a> here <i class="bi bi-arrow-left-short"> </i>).
+  </em>
+
+{%endblock%}
+  

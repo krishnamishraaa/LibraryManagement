@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{%include 'navbar.html'%}
+{% block header %} {% endblock %}
+{%block content%}
+
+{% include 'searchbar.html' %}  
+
+        <!-- First horizontal section -->
+        <div class="d-flex">
+        <table class="table table-striped text-center">
+            <thead >
+                <tr >
+                    <th colspan="6" class="align-middle bg-warning"> Current Books</th>
+                </tr>
+                <tr>
+                    <th>Sl. No</th>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>Section</th>
+                    <th>Downlaod</th>
+                    <th>Read Already?</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {%for book in current_books%}
+              
+                    <tr>
+                    
+                    <td>{{loop.index}}</td>
+                    <td>{{book.book.book_name }}</td>
+                    <td>{{book.book.book_author}}</td>
+                    <td>{{book.book.sec_name}}</td> 
+                    <td><a href="{{book.book.book_content}}"><i class="bi bi-download"></i></a></td> 
+
+                    
+                    <td><a href="/return_book/{{book.book_id}}">Return & feedback</a></td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+        </div>
+<!-- Second horizontal section -->
+<div class="overflow-auto">
+
+    <table class="table table-striped text-center">
+        <thead >
+            <tr >
+                <th colspan="7" class="align-middle bg-success"> Completed Books : {{completed_books|length}}</th>
+            </tr>
+            <tr>
+                <th>View</th>
+                <th>Book</th>
+                <th>Author</th>
+                <th>Section</th>
+                <th>Rating</th>
+                
+            </tr>
+            
+        </thead>
+        <tbody>
+            {%for book in completed_books%}
+            
+                <tr>
+            
+                <td><a href="/book_summary/{{book.book_id}}"><i class="bi bi-eye"></i></a></td>
+                <td>{{book.book.book_name }}</td>
+                <td>{{book.book.book_author}}</td>
+                <td>{{book.book.sec_name}}</td> 
+                
+                <td> 
+                    {{book.book.book_rating|round(2)}}    
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+        </div>
+
+  {%endblock%}
+
+  
+
+
+

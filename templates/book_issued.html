@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% include 'navbar.html' %}
+{% block header %} {% endblock %}
+{%block content%}
+
+<!-- {% include 'searchbar.html' %} -->
+
+<div class="row">
+  
+      {% for i in books %}
+      
+          <div class="col-4 border d-flex flex-column">
+            <table class="table table-striped text-center">
+              <thead>
+                <tr>
+                  <th colspan="3"> {{ i.book_name }} </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Author</td>
+                  <td colspan="2" rowspan="2">{{i.book_author |trim}}</td>
+                </tr>
+                <tr>
+                  <td>Currently Reading: {{i.issues|length}}</td>
+                  <td colspan="2"> ........ </td>
+
+                </tr>
+                <tr>
+                  <td colspan="3"> <i class=" bi bi-zoom-in"></i> <a href = "/book_summary/{{i.book_id}}"> Preview Book </a></td>
+                </tr>
+                <tr>
+                  <td><i class="bi bi-eye">{{i.book_views}}</i></td>
+                  <td> {% if user.is_admin %}
+                    <h6><a href = "/edit_book/{{i.book_id}}"  class="btn btn-warning" onmouseover="this.style.color='green';"><i class="bi bi-pencil-square"></i> Edit Details </a> </h6>
+                    {%else%}
+                    <a href="/issue_book/{{i.book_id}}/{{user.id}}" class="btn btn-success"><i class="bi bi-cart-plus-fill"></i> Request Book </a>
+                  {% endif %} </td>
+                </tr>
+              </tbody>
+            </table>
+                </div>
+      {% endfor %}
+  </div>
+{%endblock%}
+  

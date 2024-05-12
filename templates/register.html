@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{%include 'navbar.html'%}
+{%block title%}
+Register
+{%endblock%}
+{%block header%} <h2>Registration </h2> {%endblock%}
+
+{%block content%}
+<div>
+        <form action="/register" method="POST" class = "mt-5">
+            
+            <div>
+                <label for="name" class = "form-label">Name:
+                <input type="text" class="form-control" name = "name" id="name"  placeholder="Enter Name" />
+                </label>
+            </div>
+            <div>
+                <label for="email" class = "form-label">E-Mail:
+                <input type="email" class="form-control" name = "email" id="email"  placeholder="Enter Email id" required />
+                </label>
+            </div>
+            <div>
+                <label for="username" class = "form-label">UserID:
+                <input type="text" class="form-control" name = "username" id="username"  placeholder="Enter Username" required />
+                </label>
+            </div>
+            <div>
+                <label for="Password" class = "form-label">Password: 
+                <input type="password" class="form-control" name = "password" id="password" placeholder="Enter Password" required />
+                </label>
+            </div>
+
+            <div>
+                 
+                <input type="checkbox" name = "premium" id="premium" value=" premium">
+                <label for="premium" class = "form-label">Signup for Premium
+                </label>
+            </div>
+        
+        <input type="submit" value="Register" class="btn btn-success"> </input> 
+        </form> 
+
+        <form action="login" class="mt-1">
+        <input type="Submit" value="Cancel" class=" btn btn-danger"/>
+        </form>
+    </div>
+
+    {%endblock%}

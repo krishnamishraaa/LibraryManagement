@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{%include 'navbar.html'%}
+{% block header %}<h3>Library Management System </h3>
+{% endblock %}
+{%block content%}
+<Body background="\static\Project_70-15.jpg">
+  
+        <form action="login" method="POST">
+        
+            <label for="username" style="color: rgb(43, 7, 2); background-color: rgb(246, 249, 249);">UserID: 
+            <input type="text" class="form-control" name = "username" id="username" aria-describedby="emailHelp" placeholder="Enter Username" required ">
+        </label>
+          
+          <label for="Password" style="color: rgb(43, 7, 2); background-color: rgb(246, 249, 249);" >Password: 
+            <input type="password" class="form-control" name = "password" id="password" placeholder="Password" required>
+        </label>
+        <br>
+        <br>
+          <input type="submit" value ="Login" class="btn btn-success"> </input>
+          </form>
+        <br>
+        
+        <form  action = "{{url_for('register')}}">
+        <label style="color: rgb(43, 7, 2); background-color: rgb(246, 249, 249);">New User?
+        <button action = "{{url_for('register')}}"  class="btn btn-primary">Register Here </button>
+        </label>
+        </form>
+        
+    
+  {%endblock%}

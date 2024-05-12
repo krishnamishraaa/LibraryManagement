@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{%include 'navbar.html'%}
+{% block title %}
+    Library Controll
+{% endblock %}
+{% block header %} {% endblock %}
+{%block content%}
+
+{% include 'searchbar.html' %}
+
+{% if section|length==0 %}
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-folder-plus" viewBox="0 0 16 16">
+        <path d="m.5 3 .04.87a2 2 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2m5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19q-.362.002-.683.12L1.5 2.98a1 1 0 0 1 1-.98z"/>
+        <path d="M13.5 9a.5.5 0 0 1 .5.5V11h1.5a.5.5 0 1 1 0 1H14v1.5a.5.5 0 1 1-1 0V12h-1.5a.5.5 0 0 1 0-1H13V9.5a.5.5 0 0 1 .5-.5"/>
+    </svg>
+    <h2><a href="/add_section">Add Section</a></h2>
+  </div>
+        
+  {% endif %}
+      
+  <div class="row">
+
+        {% for i in section %}
+       
+        
+            <div class="col-4 border d-flex flex-column">
+              <h7><a href="/edit_section/{{i.section_id}}"style="color: red; text-decoration: none; " onmouseover="this.style.color='green'; this.style.textDecoration='underline';" onmouseout="this.style.color='blue'; this.style.textDecoration='none';"><i class="bi bi-pencil-square"></i>  </a></h7>
+              <a href ="/book_issued/{{i.section_id}}" style="color: black; text-decoration: none; " onmouseover="this.style.color='green'; this.style.textDecoration='underline';" onmouseout="this.style.color='black'; this.style.textDecoration='none';">
+                  <h3>{{ i.section_name }}</h3> 
+              
+                  <h6>Created on: {{ i.section_date_created.strftime('%Y-%m-%d ') | trim }} </h6>
+                  <h6 text-align="right" >Description: {{i.section_description}} </h6>
+                </a>
+                <div class="mt-auto">
+                    <!-- <i class="bi bi-eye">  :{{i.issues}}    ___ </i> -->
+                    <i class="bi bi-book">  : {{i.section_book_count}} books </i> 
+                    <br>
+                    
+                      <h3 class="bg-light p-2 border"><a href="/add_book/{{i.section_id}}">Add Book</a></h3>
+                    </div>
+                    
+                  </div>
+        {% endfor %}
+        {% if section %}
+            <div class="col-4 border">
+                <!-- SVG code for "+" sign -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-folder-plus" viewBox="0 0 16 16">
+                    <path d="m.5 3 .04.87a2 2 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2m5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19q-.362.002-.683.12L1.5 2.98a1 1 0 0 1 1-.98z"/>
+                    <path d="M13.5 9a.5.5 0 0 1 .5.5V11h1.5a.5.5 0 1 1 0 1H14v1.5a.5.5 0 1 1-1 0V12h-1.5a.5.5 0 0 1 0-1H13V9.5a.5.5 0 0 1 .5-.5"/>
+                </svg>
+                <h2><a href="/add_section">Add Section</a></h2>
+                
+            </div>
+        {% endif %}
+    </div>
+  
+
+
+{%endblock%}

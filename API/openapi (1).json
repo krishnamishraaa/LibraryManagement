@@ -1,0 +1,251 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Library Management System",
+    "version": "1.0.0",
+    "description": "This is an extension of my App Dev-1 Project. For more information, refer to the [README](http://localhost:5000/readme). <h2> ER Diagram </h2> ![ER Diagram](https://www.mermaidchart.com/raw/95ef6a4c-ce6a-423c-b4ee-ed564871005e?theme=light&version=v0.1&format=svg) <h2> Error Codes </h2>\n"
+  },
+  "paths": {
+    "/api/section": {
+      "summary": "To add new Section",
+      "description": "User can view available sections and create a new one",
+      "post": {
+        "summary": "Create a new Section",
+        "operationId": "createSection",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "section_name": {
+                    "type": "string"
+                  },
+                  "section_description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Section created successfully"
+          }
+        }
+      }
+    },
+    "/api/section/{section_id}": {
+      "summary": "View and edit Section metadata",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "section_id",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve Section details",
+        "operationId": "getSectionDetails",
+        "responses": {
+          "200": {
+            "description": "Section details retrieved successfully"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Section details",
+        "operationId": "updateSection",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "section_name": {
+                    "type": "string"
+                  },
+                  "section_description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Section details updated successfully"
+          }
+        }
+      }
+    },
+    "/api/book/{section_id}": {
+      "summary": "To add Books in Section",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "section_id",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "post": {
+        "summary": "Add a book to this section",
+        "operationId": "addBookToSection",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "book_link": {
+                    "type": "string"
+                  },
+                  "book_name": {
+                    "type": "string"
+                  },
+                  "author": {
+                    "type": "string"
+                  },
+                  "is_premium": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Book added successfully"
+          }
+        }
+      }
+    },
+    "/api/book/{section_id}/{book_id}": {
+      "summary": "To Access & Edit Books",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "section_id",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        {
+          "in": "path",
+          "name": "book_id",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve Book details",
+        "operationId": "getBookDetails",
+        "responses": {
+          "200": {
+            "description": "Book details retrieved successfully"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Book details",
+        "operationId": "updateBook",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "book_name": {
+                    "type": "string"
+                  },
+                  "author": {
+                    "type": "string"
+                  },
+                  "book_link": {
+                    "type": "string"
+                  },
+                  "is_premium": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Book details updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "summary": "It will delete book (if you are author!)",
+        "description": "",
+        "operationId": "",
+        "responses": {
+          "default": {
+            "description": "Default error sample response"
+          }
+        }
+      }
+    },
+    "/api/graph/{parameter}": {
+      "summary": "Will get data to Create Graph",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "parameter",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Will give array to create graphs",
+        "operationId": "getGraphData",
+        "responses": {
+          "200": {
+            "description": "Data retrieved successfully"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "400": {
+      "description": "Bad request, missing or invalid parameters"
+    },
+    "404": {
+      "description": "Resource not found"
+    },
+    "500": {
+      "description": "Internal server error"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    }
+  ]
+}

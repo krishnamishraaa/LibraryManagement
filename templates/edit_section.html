@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{%include 'navbar.html'%}
+{% block header %}<h3> Edit Section </h3> {% endblock %}
+{%block content%}
+    
+    <form action="{{ url_for('edit_section', section_id=section.section_id) }}" method="POST" class = "mt-5">
+            
+      <div>
+          <label for="title" class = "form-label">Title:
+          <input type="text" class="form-control" name = "title" id="title"  value="{{section.section_name}}" required />
+          </label>
+      </div>
+      <div>
+          <label for="datetime" class = "form-label">Date Created:
+          <input type="datetime-local" class="form-control" name = "datetime" id="datetime"  value="{{section.section_date_created}}" />
+          </label>
+      </div>
+      <div>
+          <label for="image" class = "form-label"> Upload Image (Optional):
+          <input type="file" class="form-control" name = "image" id="image"   />
+          </label>
+      </div>
+      <div>
+          <label for="description" class = "form-label">Description: 
+          <input type="longtext" class="form-control" name = "description" id="description" value="{{section.section_description}}" required />
+          </label>
+      </div>
+  
+  <button type="submit" class="btn btn-success"> Update Section</button>
+  <a href="{{url_for('lib_book_sec')}}" class="btn btn-secondary">Cancel</a>
+  </form>    
+  <div class="ms-5 mt-2">
+    <form action="/edit_section/{{section.section_id }}/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this Section?')">               
+      <button type="submit" class="btn btn-danger"> Delete Section</button>
+    </form>
+  </div>
+       {%endblock%}
+  
