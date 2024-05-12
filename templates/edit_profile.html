@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{%include 'navbar.html'%}
+{%block title%}
+Register
+{%endblock%}
+{%block header%} <h3>Update Profile / Premium Membership</h3> {%endblock%}
+
+{%block content%}
+
+
+<div>
+    <form action="/edit_profile" method="POST" class = "mt-5">
+        
+        <div>
+            <label for="name" class = "form-label">Name:
+            <input type="text" class="form-control" name = "name" id="name" value="{{user.user_name}}" />
+            </label>
+        </div>
+        <div>
+            <label for="email" class = "form-label">E-Mail:
+            <input type="email" class="form-control" name = "email" id="email"  value="{{user.email}}" required />
+            </label>
+        </div>
+        <div>
+            <label for="username" class = "form-label">UserName:
+            <input type="text" class="form-control" name = "username" id="username"  value="{{user.user_name}}" readonly />
+            </label>
+        </div>
+        <div>
+            <label for="Password" class = "form-label">Password: 
+            <input type="password" class="form-control" name = "password" id="password" value="{{user.passwordhash}}" required />
+            </label>
+        </div>
+
+        <div>
+             
+            <input type="checkbox" name = "premium" id="premium" value=" premium">
+            <label for="premium" class = "form-label">Signup for Premium
+            </label>
+        </div>
+    
+    <input type="submit" class="btn btn-success" value="Upgrade Registration"> </input>
+    <a href="/home" class=" btn btn-secondary">Go Back</a>
+    </form> 
+</div>  
+{%endblock%}

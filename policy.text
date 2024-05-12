@@ -1,0 +1,22 @@
+                 Welcome to Library Management System. 
+
+         Few Policies related to this app is outlined below.
+
+1. Fair Use Policy: An user can have a Maximum of 5 Books at time. 
+However, Premium Member (against a Monthly or Annual Subscription) can
+enjoy unlimited book, including Premium Category books.
+
+2. Maximum Duration of keeping a book is 7 Days, after this Link will be 
+deactivated & user will loose access of book.
+
+3. You can return book before 7 days & will be able to issue another book 
+(within Non Premium member limit of 5).
+
+    # AUTO RETURN ------------------------
+    issues = Issue.query.filter(Issue.link_active == True, Issue.return_date != None).all()
+    for issue in issues:
+        issue.auto_return()
+
+
+
+

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block header %}
+<a href="/my_book" class="btn btn-secondary">Go Back</a>
+<h3>Feedback  </h3>
+{% endblock header %}
+{% block content %}
+  
+
+
+<form method="post" class="form-control" action="/feedback/{{user_id}}/{{book_id}}">
+    <label class="form-label" for="rating">Rating:</label>
+    <select name="rating" id="rating">
+      <option value="5">5 Stars</option>
+      <option value="4">4 Stars</option>
+      <option value="3">3 Stars</option>
+      <option value="2">2 Stars</option>
+      <option value="1">1 Star</option>
+    </select>
+    <br>
+    <label class="form-label" for="comment">Comment:</label>
+    <textarea class="form-control" name="comment" id="comment"></textarea>
+    <br>
+    <button class="btn btn-success" type="submit">Submit Feedback</button>
+  </form>
+  {% endblock content %}

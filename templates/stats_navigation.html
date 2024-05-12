@@ -1,0 +1,61 @@
+<div class="container-fluid p-2 justify-content-end">
+    <form class="ml-auto">
+      <select name="parameter" id="parameter" class="form-select">
+        <option value="book">Book</option>
+        <option value="section" selected>Section</option>
+       {% if user.is_admin %}
+        
+       
+        <option value="user" >User</option>
+        {% endif %}    
+   
+        <option value="author" >Author</option>
+          
+      </select>
+      <!-- <input type="text" class="form-control" name="search" id="search" placeholder="Enter Query" required/> -->
+      <button type="submit" class="clear-button btn btn-outline-danger" onclick="clearserch()">
+        <i class="fas fa-sync-alt">Reset</i>
+      </button>
+      <button type="submit" class="search-button btn btn-outline-success">
+        <i class="bi bi-search"></i>
+      </button>
+    </form>
+  
+  </div>
+  
+  <style>
+    form {
+      display: flex;
+      width:100%;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center; 
+    }
+  
+    #parameter {
+      margin-right: 10px;
+      width: 120px;
+    }
+  
+    #search {
+      margin-right: 10px;
+      flex-grow: 1;
+      width: 360px;
+    }
+    .search-button{
+      
+      width: 100px;
+      height:40px;
+    }
+    .clear-button{
+      margin-right:7px;
+      width:60px;
+      height:40px;
+    }
+  </style>
+  <script>
+    function clearserch(){
+      window.location.href =window.location.href.split('?')[0];
+      
+    }
+  </script>

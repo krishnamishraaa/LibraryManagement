@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% include 'navbar.html' %}
+{% block Title %}
+User_Statistics
+{% endblock %}
+{% block header%}
+{% endblock %}
+
+{% block content %}
+
+{% include 'stats_navigation.html'%}
+
+
+
+<!-- Tools for interacting Dirrefent types of Charts-->
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- First section for displaying pictures -->
+            {% if parameter=='section' %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+
+                        <th>Section Name</th>
+                        <th>No. of Books</th>
+                        <th>Section Ratings</th>
+                        <th>Section Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(0, x|length) %}
+                    <tr>
+                        <td>{{ x[i][0] }}</td>
+                        <td>{{ x[i][1] }}</td>
+                        <td>{{x[i][2]|round(2)}}</td>
+                        <td>{{(current_date - x[i][3]).days+1}} Days</td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+            {% if parameter=='book' %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th colspan="4">Top 5 Books</th>
+                    </tr>
+                    <tr>
+                        <th>Book Name</th>
+                        <th>Author</th>
+                        <th>Rating</th>
+                        <th>Book Views</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(0, 5) %}
+                    <tr>
+                        <td>{{ x[i].book_name }}</td>
+                        <td>{{ x[i].book_author }}</td>
+                        <td>{{x[i].book_rating|round(2)}}</td>
+                        <td>{{x[i].book_views}}</td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+            {% if parameter=='user' %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+
+                        <th>User Name</th>
+                        <th>No.of Book Completed</th>
+                        <!-- <th>User Name</th>
+                    <th>No. of Book Completed</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for i in range(0,y|length) %}
+                    <tr>
+                        <td>{{ y[i] }}</td>
+                        <td>{{ x[i][1] }}</td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+            {% endif %}
+            {% if parameter=='author' %}
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+
+                        <th>Author Name</th>
+                        <th>No. of Books</th>
+                        <th>Author Name</th>
+                        <th>No. of Books</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(0,5) %}
+                    <tr>
+                        <td>{{ x[i].book_author }}</td>
+                        <td>{{ x[i].book_wrote }}</td>
+                        <td>{{x[i+5].book_author}}</td>
+                        <td>{{x[i+5].book_wrote}} </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+
+        <div class="col-md-6">
+            <img src="/static/{{parameter}}.png" alt="" class="img-fluid">
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-6 text-right">
+
+            </div>
+        </div>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p>Transactions:</p>
+                    </div>
+                    <div class="col">
+                        <div class="circle">{{engmnt[0]}}</div>
+                    </div>
+                    <div class="col">
+                        <p>Users:</p>
+                    </div>
+                    <div class="col">
+                        <div class="circle">{{engmnt[1]}}</div>
+                    </div>
+                    <div class="col">
+                        <p>Books:</p>
+                    </div>
+                    <div class="col">
+                        <div class="circle">{{engmnt[2]}}</div>
+                    </div>
+                    <div class="col">
+                        <p>Authors:</p>
+                    </div>
+                    <div class="col">
+                        <div class="circle">{{engmnt[3]}}</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        {% endblock %}

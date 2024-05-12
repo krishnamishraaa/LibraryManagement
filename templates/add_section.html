@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{%include 'navbar.html'%}
+{% block header %} {% endblock %}
+{%block content%}
+    
+    <form action="add_section" method="POST" class = "mt-5">
+            
+      <div>
+          <label for="title" class = "form-label">Title:
+          <input type="text" class="form-control" name = "title" id="title" aria-describedby="emailHelp" placeholder="Enter Title" required />
+          </label>
+      </div>
+      <div>
+          <label for="datetime" class = "form-label">Date Created:
+          <input type="datetime-local" class="form-control" name = "datetime" id="datetime" aria-describedby="emailHelp" placeholder= "Enter Date" />
+          </label>
+      </div>
+      <div>
+          <label for="image" class = "form-label"> Upload Image (Optional):
+          <input type="file" class="form-control" name = "username" id="username" aria-describedby="emailHelp"  />
+          </label>
+      </div>
+      <div>
+          <label for="description" class = "form-label">Description: 
+          <input type="longtext" class="form-control" name = "description" id="description" placeholder="description here.." required />
+          </label>
+      </div>
+  
+  <button type="submit" class="btn btn-success"> Add Section</button>
+  </form>                   
+       {%endblock%}
+  
