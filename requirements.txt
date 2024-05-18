@@ -5,5 +5,5 @@ matplotlib
 werkzeug
 datetime
 flask_sqlalchemy
-dotenv
+python-dotenv
 streamlit
