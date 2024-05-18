@@ -1,7 +1,5 @@
 flask
 flask_restful
-functools
-sqlalchemy
 sqlalchemy
 matplotlib
 werkzeug
