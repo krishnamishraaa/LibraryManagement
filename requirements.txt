@@ -5,3 +5,4 @@ matplotlib
 werkzeug
 datetime
 flask_sqlalchemy
+dotenv
