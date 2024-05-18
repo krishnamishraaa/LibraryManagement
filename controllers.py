@@ -357,21 +357,21 @@ def edit_section(section_id):
         flash("Section Updated Succesfully")
         return render_template("lib_book_sec.html",user=User.query.get(session['user_id']), section = Section.query.all())    
 
-@app.route("/edit_section/<int:section_id>/delete", methods=["POST"])
-@admin_required
-def delete_section(section_id):
-    #Query the Section & Books in section
-    sect = Section.query.get_or_404(section_id)
-    buk= Book.query.get(section_id)
-    if buk:
-        flash(f"Can't delete section {sect.section_name}, Please transfer books to appropriate section first")
-        return redirect(url_for('lib_book_sec'))
+# @app.route("/edit_section/<int:section_id>/delete", methods=["POST"])
+# @admin_required
+# def delete_section(section_id):
+#     #Query the Section & Books in section
+#     sect = Section.query.get_or_404(section_id)
+#     buk= Book.query.get(section_id)
+#     if buk:
+#         flash(f"Can't delete section {sect.section_name}, Please transfer books to appropriate section first")
+#         return redirect(url_for('lib_book_sec'))
 
-    db.session.delete(sect)
-    db.session.commit()
+#     db.session.delete(sect)
+#     db.session.commit()
 
-    flash(f"Section deleted successfully", "success") 
-    return redirect(url_for("lib_book_sec"))
+#     flash(f"Section deleted successfully", "success") 
+#     return redirect(url_for("lib_book_sec"))
 
 # ================== BOOK ===================================
 @app.route("/add_book/<int:section_id>", methods= ['GET', 'POST'])
