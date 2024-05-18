@@ -33,18 +33,18 @@ def admin_required(func):
         return func(*args, **kwargs)
     return inner
 
-def premium_required(func):
-    @wraps(func)
-    def inner(*args, **kwargs):
-        if 'user_id' not in session:
-            flash("You need to login to continue")
-            return redirect(url_for('login'))
-        user=User.query.get(session['user_id'])
-        if not (user.is_admin or user.is_premium):
-            flash("You are not a Premium Member, Please signup for membership")
-            return redirect(url_for('edit_profile'))
-        return func(*args, **kwargs)
-    return inner
+# def premium_required(func):
+#     @wraps(func)
+#     def inner(*args, **kwargs):
+#         if 'user_id' not in session:
+#             flash("You need to login to continue")
+#             return redirect(url_for('login'))
+#         user=User.query.get(session['user_id'])
+#         if not (user.is_admin or user.is_premium):
+#             flash("You are not a Premium Member, Please signup for membership")
+#             return redirect(url_for('edit_profile'))
+#         return func(*args, **kwargs)
+#     return inner
 
 @app.route("/readme")
 def readme():
@@ -496,11 +496,11 @@ def reject(user_id,book_id):
 #---------------------USER  Related ..----.....................................
 
 # PREMIUM --------------------------
-@app.route("/premium/<int:book_id>")
-@premium_required
-def premium(book_id):
-    user= User.query.get(session['user_id'])
-    return render_template("premium.html", book = Book.query.get(book_id), user=user)
+# @app.route("/premium/<int:book_id>")
+# @premium_required
+# def premium(book_id):
+#     user= User.query.get(session['user_id'])
+#     return render_template("premium.html", book = Book.query.get(book_id), user=user)
 
 # USERHOME USERREQ REQ & MYBOOK----------------------------
 @app.route("/UserReq")
